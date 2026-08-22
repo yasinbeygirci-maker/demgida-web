@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { iyzico } from '@/lib/iyzico';
+import { iyzico } from '@/lib/iyzico'; // <-- 'iyzipay' yerine 'iyzico'
 
 export async function POST(req: Request): Promise<Response> {
   try {
