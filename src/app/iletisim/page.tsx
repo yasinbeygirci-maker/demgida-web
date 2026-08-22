@@ -16,7 +16,7 @@ export default function IletisimPage() {
         <div className="space-y-4 bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm">
           <h2 className="text-lg font-semibold text-neutral-900 border-b pb-2">Merkez Adres & İletişim</h2>
           <p><strong>Açık Adres:</strong> Çarşı Mah. Kerkük Cad. No: 19 Merkez / Erzincan[cite: 1]</p>
-          <p><strong>Müşteri Destek Hattı:</strong> 0533 030 53 24</p>
+          <p><strong>Müşteri Destek Hattı:</strong> +90 533 030 53 24</p>
           <p><strong>Çalışma Saatleri:</strong> Hafta içi 09:00 - 18:00</p>
         </div>
       </div>
