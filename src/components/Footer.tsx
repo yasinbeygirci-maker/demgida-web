@@ -38,11 +38,12 @@ export default function Footer() {
 
           {/* 3. Kolon: Müşteri Hizmetleri / Kurumsal */}
           <div>
-            <h3 className="font-semibold text-sm text-[#D4A373] mb-3">Müşteri Hizmetleri</h3>
+            <h3 className="font-semibold text-sm text-[#D4A373] mb-3">Yasal & Kurumsal</h3>
             <ul className="space-y-2 text-xs text-stone-300">
-              <li><Link href="/teslimat-ve-kargo" className="hover:text-[#D4A373] transition">Teslimat & Kargo Takibi</Link></li>
-              <li><Link href="/iptal-ve-iade-kosullari" className="hover:text-[#D4A373] transition">İptal ve İade Şartları</Link></li>
-              <li><Link href="/gizlilik-ve-guvenlik" className="hover:text-[#D4A373] transition">Gizlilik ve Güvenlik</Link></li>
+              <li><Link href="/mesafeli-satis-sozlesmesi" className="hover:text-[#D4A373] transition">Mesafeli Satış Sözleşmesi</Link></li>
+              <li><Link href="/iptal-ve-iade-kosullari" className="hover:text-[#D4A373] transition">İptal ve İade Koşulları</Link></li>
+              <li><Link href="/gizlilik-ve-guvenlik" className="hover:text-[#D4A373] transition">Gizlilik ve Güvenlik (KVKK)</Link></li>
+              <li><Link href="/teslimat-ve-kargo" className="hover:text-[#D4A373] transition">Teslimat ve Kargo Bilgileri</Link></li>
             </ul>
           </div>
 
@@ -60,18 +61,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Alt Çizgi ve Yasal Sözleşme Linkleri */}
+        {/* Alt Çizgi ve Telif */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-wrap gap-4 text-xs text-stone-400">
-            <Link href="/mesafeli-satis-sozlesmesi" className="hover:text-white transition">Mesafeli Satış Sözleşmesi</Link>
-            <Link href="/iptal-ve-iade-kosullari" className="hover:text-white transition">İptal ve İade Koşulları</Link>
-            <Link href="/gizlilik-ve-guvenlik" className="hover:text-white transition">Gizlilik ve Güvenlik</Link>
-            <Link href="/teslimat-ve-kargo" className="hover:text-white transition">Teslimat ve Kargo</Link>
-          </div>
-
           <p className="text-xs text-stone-400">
             © {new Date().getFullYear()} Dem Gıda. Tüm hakları saklıdır.
           </p>
+          <div className="flex items-center gap-2 text-xs text-stone-400">
+            <span>Güvenli Altyapı</span>
+            <span>·</span>
+            <span>SSL Sertifikalı</span>
+          </div>
         </div>
 
       </div>
