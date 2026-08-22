@@ -13,6 +13,7 @@ export default function OdemePage() {
     fullName: 'Yasin Beygirci',
     email: 'yasin@ostlertech.com',
     phone: '05313567796',
+    tcNo: '', // iyzico için zorunlu alan
     city: 'Erzincan',
     district: 'Merkez',
     address: 'Hancı Mahallesi Akasya Sokak No:7',
@@ -30,7 +31,7 @@ export default function OdemePage() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleMockPayment = async (e: React.FormEvent) => {
+  const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage(null);
@@ -49,39 +50,41 @@ export default function OdemePage() {
               },
             ];
 
-      const response = await fetch('/api/orders/create', {
+      // iyzico entegrasyonu için hazırladığımız api/checkout rotasına istek atıyoruz
+      const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          buyer: {
-            fullName: formData.fullName,
+          cart: orderItems,
+          total: subtotal,
+          formData: {
+            name: formData.fullName,
             email: formData.email,
             phone: formData.phone,
+            tc_no: formData.tcNo,
+            address: `${formData.address}, ${formData.district} / ${formData.city}`,
           },
-          shippingAddress: {
-            city: formData.city,
-            district: formData.district,
-            address: formData.address,
-          },
-          items: orderItems,
-          totalPrice: subtotal,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Sipariş oluşturulamadı.');
+        throw new Error(data.error || 'Ödeme başlatılamadı.');
       }
 
-      // Sepeti temizle (varsa)
+      // Sepeti temizle
       if (clearCart) clearCart();
 
-      // Sipariş başarılı sayfasına yönlendir
-      router.push(`/odeme/sonuc?status=success&orderId=${data.orderId}`);
+      // iyzico ödeme sayfasına (sandbox veya live) yönlendir
+      if (data.paymentForm && data.paymentForm.paymentPageUrl) {
+        window.location.href = data.paymentForm.paymentPageUrl;
+      } else {
+        throw new Error('İyzico ödeme sayfası URL alınamadı.');
+      }
+
     } catch (err: any) {
-      setErrorMessage(err.message || 'Sipariş işlenirken bir hata oluştu.');
-    } finally {
+      setErrorMessage(err.message || 'Ödeme işlenirken bir hata oluştu.');
       setLoading(false);
     }
   };
@@ -89,16 +92,16 @@ export default function OdemePage() {
   return (
     <div className="min-h-screen bg-[#fcfaf7] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Sol Kolon: Teslimat Bilgileri Formu */}
+        {/* Sol Kolon: Teslimat ve iyzico Bilgileri Formu */}
         <div className="lg:col-span-7 bg-white p-8 rounded-2xl shadow-sm border border-neutral-100">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-serif font-bold text-neutral-900">Teslimat & Ödeme Bilgileri</h2>
             <span className="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-medium">
-              Test Modu Aktif
+              iyzico Sandbox Modu
             </span>
           </div>
           <p className="text-neutral-500 text-sm mb-6">
-            Lütfen kargonuzun ulaşacağı adresi eksiksiz doldurun.
+            Güvenli ödeme için lütfen bilgilerinizi eksiksiz doldurun.
           </p>
 
           {errorMessage && (
@@ -111,7 +114,7 @@ export default function OdemePage() {
             </div>
           )}
 
-          <form onSubmit={handleMockPayment} className="space-y-4">
+          <form onSubmit={handlePayment} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1">
                 Ad Soyad *
@@ -156,6 +159,22 @@ export default function OdemePage() {
                   className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#8C6D53]"
                 />
               </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1">
+                TC Kimlik Numarası * <span className="text-[10px] text-neutral-400 lowercase">(iyzico doğrulaması için)</span>
+              </label>
+              <input
+                type="text"
+                name="tcNo"
+                required
+                maxLength={11}
+                value={formData.tcNo}
+                onChange={handleChange}
+                placeholder="11 haneli TC Kimlik No"
+                className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#8C6D53]"
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -209,7 +228,7 @@ export default function OdemePage() {
               disabled={loading}
               className="w-full mt-6 bg-[#C49A6C] hover:bg-[#B3895B] text-white py-4 rounded-xl font-medium transition duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              {loading ? 'Sipariş Oluşturuluyor...' : 'Siparişi Tamamla & Öde (Test Modu)'}
+              {loading ? 'iyzico Güvenli Ödeme Sayfasına Yönlendiriliyor...' : 'iyzico ile Güvenli Ödemeye Geç'}
             </button>
           </form>
         </div>
@@ -270,8 +289,8 @@ export default function OdemePage() {
             </div>
 
             <div className="mt-4 flex items-center justify-between text-xs text-neutral-400 border-t border-neutral-100 pt-4">
-              <span>Hızlı Teslimat</span>
-              <span>Güvenli Altyapı</span>
+              <span>256-bit SSL Koruma</span>
+              <span>iyzico Güvencesi</span>
             </div>
           </div>
         </div>
