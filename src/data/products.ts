@@ -306,3 +306,4 @@ export const products: Product[] = [
     description: 'Doğal inek sütünden üretilmiş geleneksel Beşikdüzü taze kaşar peyniri.',
     features: ['Kargo Bedava', 'Doğal İnek Sütü', 'Taze Kaşar'],
   },
+];
