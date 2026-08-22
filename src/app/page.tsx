@@ -28,7 +28,7 @@
             <div className="bg-[#fcfaf7] p-6 rounded-2xl border border-neutral-200/60 space-y-2">
               <h3 className="font-semibold text-neutral-900 text-base mb-3 border-b pb-2">İletişim Kanalları</h3>
               <p className="text-xs text-neutral-600"><strong>Destek E-posta:</strong> destek@demgida.com</p>
-              <p className="text-xs text-neutral-600"><strong>Müşteri Hattı:</strong> 0531 356 77 96</p>
+              <p className="text-xs text-neutral-600"><strong>Müşteri Hattı:</strong> 0533 030 53 24</p>
               <p className="text-xs text-emerald-600 font-medium pt-1">✔ 256-bit SSL & iyzico Güvencesi</p>
             </div>
           </div>
