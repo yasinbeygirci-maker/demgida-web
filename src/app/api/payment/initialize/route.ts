@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { iyzipay } from '@/lib/iyzico';
+import { iyzico } from '@/lib/iyzico';
 
 export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json();
 
     const result = await new Promise<any>((resolve, reject) => {
-      iyzipay.checkoutFormInitialize.create(body, (err: any, result: any) => {
+      iyzico.checkoutFormInitialize.create(body, (err: any, result: any) => {
         if (err) {
           reject(err);
         } else {
