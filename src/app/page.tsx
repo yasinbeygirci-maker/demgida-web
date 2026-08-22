@@ -3,67 +3,127 @@ import React from 'react';
 import Link from 'next/link';
 import Hero from '@/components/Hero';
 import ProductCard from '@/components/ProductCard';
+import AnimatedReveal from '@/components/AnimatedReveal';
 import { products } from '@/data/products';
+import { ArrowRight, Truck, ShieldCheck, Sparkles, Coffee } from 'lucide-react';
 
 export default function HomePage() {
   const featuredCoffees = products.filter((p) => p.category === 'kahveler');
   const featuredSyrups = products.filter((p) => p.category === 'suruplar').slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="min-h-screen bg-brand-neutral">
       {/* Hero Banner */}
       <Hero />
 
       {/* Öne Çıkan Kahveler Bölümü */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D53] block mb-2">
-              Özel Seçki
-            </span>
-            <h2 className="text-3xl font-serif font-bold text-neutral-900">
-              Desotti Kahve Koleksiyonu
-            </h2>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-40">
+        <AnimatedReveal width="100%">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="space-y-4">
+              <span className="text-[11px] font-bold uppercase tracking-premium-widest text-brand-accent">
+                Premium Seçki
+              </span>
+              <h2 className="text-4xl lg:text-6xl font-serif font-medium text-brand-navy tracking-premium-tight">
+                Kahve Koleksiyonu
+              </h2>
+            </div>
+            <Link
+              href="/kategori/kahveler"
+              className="group mt-4 md:mt-0 text-[10px] font-bold uppercase tracking-premium-widest text-brand-navy hover:text-brand-accent transition-colors flex items-center gap-3 bg-white px-8 py-4 rounded-full border border-brand-navy/10 shadow-sm hover:shadow-xl hover:-translate-y-1"
+            >
+              TÜMÜNÜ KEŞFET <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          <Link
-            href="/kategori/kahveler"
-            className="mt-4 md:mt-0 text-sm font-semibold text-[#8C6D53] hover:text-[#3b2314] transition flex items-center gap-1"
-          >
-            Tüm Kahveleri Gör <span>&rarr;</span>
-          </Link>
-        </div>
+        </AnimatedReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredCoffees.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {featuredCoffees.map((product, index) => (
+            <AnimatedReveal key={product.id} delay={0.1 * index} width="100%">
+              <ProductCard product={product} />
+            </AnimatedReveal>
           ))}
         </div>
       </section>
 
       {/* Gurme Şuruplar Bölümü */}
-      <section className="bg-white border-y border-neutral-200/60 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D53] block mb-2">
-                Aroma & Lezzet
-              </span>
-              <h2 className="text-3xl font-serif font-bold text-neutral-900">
-                Kahve & Kokteyl Şurupları
-              </h2>
-            </div>
-            <Link
-              href="/kategori/suruplar"
-              className="mt-4 md:mt-0 text-sm font-semibold text-[#8C6D53] hover:text-[#3b2314] transition flex items-center gap-1"
-            >
-              Tüm Şurupları Gör <span>&rarr;</span>
-            </Link>
-          </div>
+      <section className="bg-brand-navy py-24 lg:py-40 relative overflow-hidden">
+        {/* Dekoratif Arka Plan */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute -top-48 -left-48 w-[600px] h-[600px] bg-brand-accent rounded-full blur-[120px]" />
+          <div className="absolute -bottom-48 -right-48 w-[600px] h-[600px] bg-brand-accent rounded-full blur-[120px]" />
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredSyrups.map((product) => (
-              <ProductCard key={product.id} product={product} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <AnimatedReveal width="100%">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+              <div className="space-y-4">
+                <span className="text-[11px] font-bold uppercase tracking-premium-widest text-brand-accent">
+                  Aroma & Lezzet
+                </span>
+                <h2 className="text-4xl lg:text-6xl font-serif font-medium text-brand-neutral tracking-premium-tight">
+                  Gurme Şuruplar
+                </h2>
+              </div>
+              <Link
+                href="/kategori/suruplar"
+                className="group mt-4 md:mt-0 text-[10px] font-bold uppercase tracking-premium-widest text-brand-neutral hover:text-brand-accent transition-colors flex items-center gap-3 bg-white/5 backdrop-blur-xl px-8 py-4 rounded-full border border-white/10 shadow-2xl hover:bg-white/10"
+              >
+                TÜMÜNÜ GÖR <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </AnimatedReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredSyrups.map((product, index) => (
+              <AnimatedReveal key={product.id} delay={0.1 * index} width="100%">
+                <ProductCard product={product} />
+              </AnimatedReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Güven Bandı */}
+      <section className="bg-white border-y border-brand-navy/5 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <AnimatedReveal delay={0.1}>
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-brand-navy/5 flex items-center justify-center text-brand-navy mb-2">
+                  <Truck size={24} />
+                </div>
+                <h4 className="text-sm font-black text-brand-navy uppercase tracking-tight">Hızlı Teslimat</h4>
+                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">24 Saatte Kargoda</p>
+              </div>
+            </AnimatedReveal>
+            <AnimatedReveal delay={0.2}>
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-brand-navy/5 flex items-center justify-center text-brand-navy mb-2">
+                  <ShieldCheck size={24} />
+                </div>
+                <h4 className="text-sm font-black text-brand-navy uppercase tracking-tight">Güvenli Ödeme</h4>
+                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">%100 İyzico Güvencesi</p>
+              </div>
+            </AnimatedReveal>
+            <AnimatedReveal delay={0.3}>
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-brand-navy/5 flex items-center justify-center text-brand-navy mb-2">
+                  <Sparkles size={24} />
+                </div>
+                <h4 className="text-sm font-black text-brand-navy uppercase tracking-tight">Doğal Ürünler</h4>
+                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Katkısız ve Taze</p>
+              </div>
+            </AnimatedReveal>
+            <AnimatedReveal delay={0.4}>
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-brand-navy/5 flex items-center justify-center text-brand-navy mb-2">
+                  <Coffee size={24} />
+                </div>
+                <h4 className="text-sm font-black text-brand-navy uppercase tracking-tight">Nitelikli Kahve</h4>
+                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Özel Kavrum</p>
+              </div>
+            </AnimatedReveal>
           </div>
         </div>
       </section>

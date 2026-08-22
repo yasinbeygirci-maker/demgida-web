@@ -8,14 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["var(--font-serif)", "serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+      },
       colors: {
         brand: {
-          dark: "#2B170E",
-          green: "#3A5A40",
-          accent: "#D4A373",
-          light: "#FAEDCD",
-          surface: "#FDFBF7",
+          navy: "#0F172A",
+          dark: "#1E293B",
+          accent: "#38BDF8",
+          neutral: "#F8FAFC",
+          muted: "#64748B",
         },
+      },
+      letterSpacing: {
+        "premium-tight": "-0.04em",
+        "premium-normal": "0",
+        "premium-wide": "0.1em",
+        "premium-widest": "0.25em",
       },
     },
   },
