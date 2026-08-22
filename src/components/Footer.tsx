@@ -16,13 +16,13 @@ export default function Footer() {
               <span className="font-extrabold text-xl font-serif text-[#FAEDCD]">DEM GIDA</span>
             </div>
             <p className="text-xs text-stone-300 leading-relaxed">
-              ERZİNCAN DEM GIDA İNŞAAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+              ERZİNCAN DEM GIDA İNŞAAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ[cite: 1]
             </p>
             <p className="text-xs text-stone-400">
-              <strong>Adres:</strong> Çarşı Mah. Kerkük Cad. No: 19 Merkez/Erzincan
+              <strong>Adres:</strong> Çarşı Mah. Kerkük Cad. No: 19 Merkez/Erzincan[cite: 1]
             </p>
             <p className="text-xs text-stone-400">
-              <strong>E-posta:</strong> info@demgida.com
+              <strong>E-posta:</strong> destek@demgida.com
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Dem Gıda İnş. San. ve Tic. Ltd. Şti. Tüm hakları saklıdır.
           </p>
           <p className="text-xs text-stone-400">
-            Vergi Dairesi: Fevzipaşa | Vergi No: 3770988662
+            Vergi Dairesi: Fevzipaşa[cite: 1] | Vergi No: 3770988662[cite: 1]
           </p>
         </div>
 
