@@ -3,7 +3,7 @@ export interface Product {
   id: string;
   name: string;
   slug: string;
-  category: 'kahveler' | 'suruplar' | 'dogal-urunler';
+  category: 'kahveler' | 'suruplar' | 'dogal-urunler' | 'sut-urunleri';
   price: number;
   weight: string;
   image: string;
@@ -195,5 +195,67 @@ export const products: Product[] = [
     tag: 'Meyveli',
     description: 'Tropikal muz aromasıyla sütlü içecekler ve frappeler için tatlı bir dokunuş.',
     features: ['700ml Cam Şişe', 'Tropikal Tat'],
+  },
+
+  // --- SÜT ÜRÜNLERİ ---
+  {
+    id: 'ck-tulum-peyniri-920g',
+    name: 'Çadıroğlu ÇK Tam Yağlı Tulum Peyniri 920g',
+    slug: 'ck-tam-yagli-tulum-peyniri-920g',
+    category: 'sut-urunleri',
+    price: 340,
+    weight: '920g Kova',
+    image: '/products/sut-urunleri/ck-tulum-peyniri-920g.png',
+    tag: 'Yöresel Lezzet',
+    description: 'Erzincan yöresine özgü, geleneksel yöntemlerle üretilmiş tam yağlı tulum peyniri.',
+    features: ['Tam Yağlı', 'Erzincan Geleneksel', '920g Özel Ambalaj'],
+  },
+  {
+    id: 'yesil-besikduzu-tereyagi-1000g',
+    name: 'Yeşil Beşikdüzü Tuzsuz Tereyağı 1000g',
+    slug: 'yesil-besikduzu-tuzsuz-tereyagi-1000g',
+    category: 'sut-urunleri',
+    price: 390,
+    weight: '1000g',
+    image: '/products/sut-urunleri/yesil-besikduzu-tereyagi-1000g.png',
+    tag: 'Mandıra Lezzeti',
+    description: 'Trabzon Beşikdüzü mandıra kalitesiyle üretilmiş, en az %82 süt yağı içeren tuzsuz tereyağı.',
+    features: ['En Az %82 Süt Yağı', 'Tuzsuz Geleneksel', '1000g Vakumlu Paket'],
+  },
+  {
+    id: 'yeni-tonya-tost-peyniri-1000g',
+    name: 'Yeni Tonya Mandıra Tost Peyniri 1000g',
+    slug: 'yeni-tonya-tost-peyniri-1000g',
+    category: 'sut-urunleri',
+    price: 260,
+    weight: '1000g Blok',
+    image: '/products/sut-urunleri/yeni-tonya-tost-peyniri-1000g.png',
+    tag: 'Kahvaltılık',
+    description: 'Tonya lezzetiyle tost, sandviç ve kahvaltılarınıza lezzet katan yarım yağlı eritme peyniri.',
+    features: ['Eritme Peyniri', 'Mükemmel Uzar', '1000g Blok Paket'],
+  },
+  {
+    id: 'besikduzu-kasar-peyniri-700g',
+    name: 'Beşikdüzü Yarım Yağlı Taze Kaşar Peyniri 700g',
+    slug: 'besikduzu-yarim-yagli-taze-kasar-700g',
+    category: 'sut-urunleri',
+    price: 240,
+    weight: '700g Blok',
+    image: '/products/sut-urunleri/besikduzu-kasar-peyniri-700g.png',
+    tag: 'Doğal Kaşar',
+    description: 'Doğal pastörize inek sütünden üretilmiş lezzetli taze yarım yağlı kaşar peyniri.',
+    features: ['Doğal İnek Sütü', 'Yarım Yağlı Taze Kaşar', '700g Vakumlu Paket'],
+  },
+  {
+    id: 'toyfa-bitkisel-margarin-1000g',
+    name: 'Toyfa Süt Yağlı Bitkisel Margarin 1000g',
+    slug: 'toyfa-sut-yagli-bitkisel-margarin-1000g',
+    category: 'sut-urunleri',
+    price: 130,
+    weight: '1000g Rulo',
+    image: '/products/sut-urunleri/toyfa-bitkisel-margarin-1000g.png',
+    tag: 'Hamur & Yemek',
+    description: '%75 toplam yağ ve %15 süt yağı içeriğiyle hamur işleri ve yemekler için ideal bitkisel margarin.',
+    features: ['%15 Süt Yağı Katkılı', '%75 Bitkisel Yağ', '1000g Rulo Paket'],
   },
 ];
