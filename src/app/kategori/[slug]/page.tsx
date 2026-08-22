@@ -17,6 +17,10 @@ const categoryMeta: Record<string, { title: string; desc: string }> = {
     title: 'Doğal Ürünler',
     desc: 'Yöresel ve katkısız taze doğal lezzetler.',
   },
+  'sut-urunleri': {
+    title: 'Süt ve Şarküteri Ürünleri',
+    desc: 'Yöresel tulum peynirleri, geleneksel tereyağları ve taze mandıra kaşar çeşitleri.',
+  },
 };
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {

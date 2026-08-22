@@ -15,6 +15,7 @@ export default function Header() {
     { name: 'Ana Sayfa', href: '/' },
     { name: 'Kahveler', href: '/kategori/kahveler' },
     { name: 'Şuruplar', href: '/kategori/suruplar' },
+    { name: 'Süt Ürünleri', href: '/kategori/sut-urunleri' },
     { name: 'Doğal Ürünler', href: '/kategori/dogal-urunler' },
   ];
 
