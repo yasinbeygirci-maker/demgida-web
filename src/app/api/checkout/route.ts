@@ -16,12 +16,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Sepetiniz boş' }, { status: 400 });
     }
 
-    // 0. ADIM: Stok Kontrolü (product_variants tablosundan)
+    // 0. ADIM: Stok Kontrolü (product_variants tablosundaki stock_qua sütunundan)
     for (const item of cart) {
-      // item.id sepetinizde varyant id'sini temsil eder
       const { data: variant, error: stockError } = await supabase
         .from('product_variants')
-        .select('id, stock')
+        .select('id, stock_qua')
         .eq('id', item.id)
         .single();
 
@@ -32,9 +31,30 @@ export async function POST(req: Request) {
         );
       }
 
-      if (variant.stock !== undefined && variant.stock < item.quantity) {
+      if (variant.stock_qua !== undefined && variant.stock_qua < item.quantity) {
         return NextResponse.json(
-          { error: `Üzgünüz, "${item.name}" için yeterli stok kalmadı. (Kalan Stok: ${variant.stock})` },
+          { error: `Üzgünüz, "${item.name}" için yeterli stok kalmadı. (Kalan Stok: ${variant.stock_qua})` },
+          { status: 400 }
+        );
+      }
+    }// 0. ADIM: Stok Kontrolü (product_variants tablosundaki stock_qua sütunundan)
+    for (const item of cart) {
+      const { data: variant, error: stockError } = await supabase
+        .from('product_variants')
+        .select('id, stock_qua')
+        .eq('id', item.id)
+        .single();
+
+      if (stockError || !variant) {
+        return NextResponse.json(
+          { error: `"${item.name}" için ürün seçimi (varyant) sistemde bulunamadı.` },
+          { status: 400 }
+        );
+      }
+
+      if (variant.stock_qua !== undefined && variant.stock_qua < item.quantity) {
+        return NextResponse.json(
+          { error: `Üzgünüz, "${item.name}" için yeterli stok kalmadı. (Kalan Stok: ${variant.stock_qua})` },
           { status: 400 }
         );
       }
