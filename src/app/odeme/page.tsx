@@ -22,10 +22,19 @@ export default function OdemePage() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // Ara toplam hesaplama
   const subtotal =
     cart && cart.length > 0
       ? cart.reduce((acc: number, item: any) => acc + Number(item.price || 0) * (item.quantity || 1), 0)
       : 864;
+
+  // Kargo Ücreti Kuralı: 1000 TL ve üzeri ücretsiz, altı 150 TL
+  const SHIPPING_FEE = 150;
+  const FREE_SHIPPING_THRESHOLD = 1000;
+  const shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+
+  // Toplam Tutar (Ara Toplam + Kargo)
+  const grandTotal = subtotal + shippingCost;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -56,7 +65,7 @@ export default function OdemePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           cart: orderItems,
-          total: subtotal,
+          total: grandTotal, // Kargo dahil toplam tutar gönderiliyor
           formData: {
             name: formData.fullName,
             email: formData.email,
@@ -76,7 +85,7 @@ export default function OdemePage() {
       // Sepeti temizle
       if (clearCart) clearCart();
 
-      // iyzico ödeme sayfasına (sandbox veya live) yönlendir
+      // iyzico ödeme sayfasına yönlendir
       if (data.paymentForm && data.paymentForm.paymentPageUrl) {
         window.location.href = data.paymentForm.paymentPageUrl;
       } else {
@@ -141,7 +150,7 @@ export default function OdemePage() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="ornek@demgida.com"
+                  placeholder="ornek@domain.com"
                   className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#8C6D53]"
                 />
               </div>
@@ -277,15 +286,24 @@ export default function OdemePage() {
                 <span>Ara Toplam:</span>
                 <span className="font-medium text-neutral-900">{subtotal.toFixed(2)} TL</span>
               </div>
-              <div className="flex justify-between text-neutral-600">
+              <div className="flex justify-between text-neutral-600 items-center">
                 <span>Kargo Ücreti:</span>
-                <span className="font-medium text-emerald-600">Ücretsiz</span>
+                {shippingCost === 0 ? (
+                  <span className="font-medium text-emerald-600">Ücretsiz (1000 TL ve Üzeri)</span>
+                ) : (
+                  <span className="font-medium text-neutral-900">{shippingCost.toFixed(2)} TL</span>
+                )}
               </div>
+              {subtotal < FREE_SHIPPING_THRESHOLD && (
+                <p className="text-xs text-amber-600 bg-amber-50 p-2 rounded-lg">
+                  {(FREE_SHIPPING_THRESHOLD - subtotal).toFixed(2)} TL daha ürün ekleyin, kargo bedava olsun!
+                </p>
+              )}
             </div>
 
             <div className="flex justify-between items-center py-4">
               <span className="text-base font-semibold text-neutral-900">Toplam Ödenecek:</span>
-              <span className="text-xl font-bold text-neutral-900">{subtotal.toFixed(2)} TL</span>
+              <span className="text-xl font-bold text-neutral-900">{grandTotal.toFixed(2)} TL</span>
             </div>
 
             <div className="mt-4 flex items-center justify-between text-xs text-neutral-400 border-t border-neutral-100 pt-4">
