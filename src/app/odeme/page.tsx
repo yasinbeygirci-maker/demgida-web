@@ -10,13 +10,13 @@ export default function OdemePage() {
   const { cart, clearCart } = useCart();
 
   const [formData, setFormData] = useState({
-    fullName: 'Yasin Beygirci',
-    email: 'yasin@ostlertech.com',
-    phone: '05313567796',
+    fullName: '',
+    email: '',
+    phone: '',
     tcNo: '', // iyzico için zorunlu alan
-    city: 'Erzincan',
-    district: 'Merkez',
-    address: 'Hancı Mahallesi Akasya Sokak No:7',
+    city: '',
+    district: '',
+    address: '',
   });
 
   const [loading, setLoading] = useState(false);
