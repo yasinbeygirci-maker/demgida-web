@@ -16,11 +16,11 @@ Mevcut e-ticaret arayüzü, talep edilen **Ocean Navy / Dark / Neutral** paletin
 - **Product Card:** Gölge efektleri (shadow-2xl), yumuşatılmış köşeler (rounded-24px) ve hover durumunda "Hızlı Bakış" overlay'i eklendi.
 - **Home Page:** Bölümler arası geçişler (Ocean Navy arka planlı Gurme Şuruplar bölümü) ve alt kısma "Güven Bandı" (Hızlı Teslimat, Güvenli Ödeme vb.) eklendi.
 
-### ✒️ Tipografi & Whitespace (Luxury Style)
-- **Modern Font Kontrastı:** Başlıklarda lüks ve klasik bir hava için **Playfair Display** (Serif), gövde metinlerinde ise yüksek okunabilirlik ve modernlik için **Inter** (Sans-Serif) kullanıldı.
-- **Letter Spacing (Tracking):** Üst düzey markaların stilini yansıtmak için navigasyon ve etiketlerde `tracking-premium-widest`, başlıklarda ise daha tok bir görünüm için `tracking-premium-tight` değerleri uygulandı.
-- **Nefes Alan Tasarım:** Bölümler arası boşluklar (`py-24 lg:py-40`) artırılarak kullanıcıya yormayan, ferah bir "Premium Retail" deneyimi sunuldu.
-- **Editorial Headlines:** Bölüm başlıkları sadece birer yazı değil, bir dergi mizanpajı şıklığında (italic vurgular ve dengeli leading) yeniden düzenlendi.
+### 🌟 Görsel Zenginlik, Storytelling & Zanaat (3. Adım)
+- **Product Storytelling:** Tüm ürünlere yöre (origin), rakım (altitude), kavrum profili, tadım notaları ve lüks segment rozetleri (`Single Origin`, `Artisan`, `Limited Edition`) eklendi.
+- **Storytelling Ürün Kartları:** Ürün kartları üzerine tadım notları hapları (Flavor pills) ve köken etiketleri eklenerek butik kahve deneyimi vurgulandı.
+- **Hero Ambient Kartlar:** Hero görsel alanına "2026 Taze Hasat Seçkisi" canlı rozeti ve cam efektli yüzen kargo kartı eklendi.
+- **Craftsmanship & Origin Section:** Ana sayfaya "Zanaat & Köken: Yüksek Rakımlardan Gelen Kusursuz Seçkiler" editöryal hikaye bölümü dahil edildi.
 
 ## Görsel İyileştirmeler (Özet)
 - Butonlara `shadow-lg` ve `hover:-translate-y-1` gibi etkileşimli sınıflar eklendi.

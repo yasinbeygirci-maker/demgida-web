@@ -21,11 +21,6 @@ export default function Header() {
 
   return (
     <>
-      {/* Üst Bilgi Barı */}
-      <div className="bg-brand-navy text-brand-neutral text-[11px] uppercase tracking-widest font-semibold py-2 px-4 text-center">
-        ☕ 500 TL ve üzeri siparişlerde <span className="text-brand-accent">Ücretsiz Kargo!</span>
-      </div>
-
       {/* Ana Header */}
       <header className="sticky top-0 z-40 bg-brand-neutral/80 backdrop-blur-xl border-b border-brand-navy/5 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

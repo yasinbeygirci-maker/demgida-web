@@ -84,6 +84,64 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Storytelling & Craftsmanship (Çiftlikten Fincana) */}
+      <section className="bg-brand-neutral py-24 lg:py-36 border-b border-brand-navy/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+            <div className="lg:col-span-6 space-y-8">
+              <AnimatedReveal width="100%">
+                <span className="text-[11px] font-bold uppercase tracking-premium-widest text-brand-accent">
+                  Zanaat & Köken
+                </span>
+                <h2 className="text-4xl lg:text-5xl font-serif font-medium text-brand-navy tracking-premium-tight mt-3 leading-tight">
+                  Yüksek Rakımlardan Gelen <br />
+                  <span className="italic">Kusursuz Seçkiler.</span>
+                </h2>
+              </AnimatedReveal>
+
+              <AnimatedReveal width="100%" delay={0.2}>
+                <p className="text-base text-brand-muted font-normal leading-relaxed">
+                  Kahve bir içecekten öte, toprağın, iklimin ve ustalıkla yapılan kavrumun bir sanatıdır. Antioquia’nın 1.650 metre dik yamaçlarından Munzur yaylalarının bin yıllık tereyağı geleneklerine kadar, her ürünümüz izlenebilir ve saf kökenlidir.
+                </p>
+              </AnimatedReveal>
+
+              <AnimatedReveal width="100%" delay={0.3}>
+                <div className="grid grid-cols-2 gap-6 pt-4">
+                  <div className="p-6 rounded-2xl bg-white border border-brand-navy/5 shadow-sm">
+                    <span className="text-3xl font-serif font-medium text-brand-navy block mb-1">1.650m+</span>
+                    <span className="text-xs font-bold text-brand-muted uppercase tracking-wider">Optimum Rakım Hasadı</span>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-white border border-brand-navy/5 shadow-sm">
+                    <span className="text-3xl font-serif font-medium text-brand-navy block mb-1">%100</span>
+                    <span className="text-xs font-bold text-brand-muted uppercase tracking-wider">İzlenebilir Köken</span>
+                  </div>
+                </div>
+              </AnimatedReveal>
+            </div>
+
+            <div className="lg:col-span-6 relative">
+              <AnimatedReveal width="100%" delay={0.3}>
+                <div className="relative rounded-[32px] overflow-hidden shadow-2xl border-8 border-white">
+                  <img
+                    src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=900&auto=format&fit=crop"
+                    alt="Kahve Çekirdeği Hasadı ve Zanaat"
+                    className="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent flex items-end p-8">
+                    <div>
+                      <p className="text-brand-accent text-xs font-bold uppercase tracking-premium-widest">Sürdürülebilir Tarım</p>
+                      <h4 className="text-white text-xl font-serif font-medium mt-1">Doğaya Saygılı, Butik Üretim</h4>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedReveal>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Güven Bandı */}
       <section className="bg-white border-y border-brand-navy/5 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

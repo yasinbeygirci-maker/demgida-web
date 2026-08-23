@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Truck, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
 export default function Hero() {
@@ -114,29 +114,28 @@ export default function Hero() {
             <div className="relative mx-auto max-w-md lg:max-w-none group">
               <div className="absolute -inset-4 bg-brand-accent/20 rounded-[40px] blur-2xl group-hover:bg-brand-accent/30 transition-colors duration-500" />
 
-              <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl border-8 border-white bg-white">
+              <div className="relative aspect-[4/5] rounded-[36px] overflow-hidden shadow-2xl border-8 border-white bg-brand-dark">
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                   src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=900&auto=format&fit=crop"
                   alt="Dem Gıda Kahve ve Doğal Ürünler"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover opacity-95"
                 />
 
+                {/* Üst Canlı Hasat / Kavrum Rozeti */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2 }}
-                  className="absolute bottom-6 left-6 right-6 bg-brand-navy/90 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-2xl"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                  className="absolute top-6 left-6 right-6 flex items-center justify-between"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-brand-accent/20 flex items-center justify-center text-brand-accent">
-                      <Truck size={24} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-brand-accent uppercase tracking-widest">Ücretsiz Kargo</p>
-                      <p className="text-sm font-bold text-brand-neutral">500 TL ve Üzeri Siparişlerde</p>
-                    </div>
+                  <div className="px-4 py-2 rounded-full bg-brand-navy/80 backdrop-blur-md border border-white/10 text-white text-[11px] font-bold tracking-premium-wide flex items-center gap-2 shadow-xl">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span>2026 Taze Hasat Seçkisi</span>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/20 shadow-xl">
+                    <Sparkles size={16} className="text-brand-accent" />
                   </div>
                 </motion.div>
               </div>
