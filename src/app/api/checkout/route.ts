@@ -12,6 +12,34 @@ export async function POST(req: Request) {
   try {
     const { cart, total, formData } = await req.json();
 
+    if (!cart || cart.length === 0) {
+      return NextResponse.json({ error: 'Sepetiniz boş' }, { status: 400 });
+    }
+
+    // 0. ADIM: Stok Kontrolü (product_variants tablosundan)
+    for (const item of cart) {
+      // item.id sepetinizde varyant id'sini temsil eder
+      const { data: variant, error: stockError } = await supabase
+        .from('product_variants')
+        .select('id, stock')
+        .eq('id', item.id)
+        .single();
+
+      if (stockError || !variant) {
+        return NextResponse.json(
+          { error: `"${item.name}" için ürün seçimi (varyant) sistemde bulunamadı.` },
+          { status: 400 }
+        );
+      }
+
+      if (variant.stock !== undefined && variant.stock < item.quantity) {
+        return NextResponse.json(
+          { error: `Üzgünüz, "${item.name}" için yeterli stok kalmadı. (Kalan Stok: ${variant.stock})` },
+          { status: 400 }
+        );
+      }
+    }
+
     // 1. Supabase'e Siparişi Kaydet
     const { data: order, error } = await supabase
       .from('orders')
@@ -32,7 +60,7 @@ export async function POST(req: Request) {
     // 2. Sipariş Kalemlerini Kaydet
     const items = cart.map((item: any) => ({
       order_id: order.id,
-      product_id: item.id,
+      product_id: item.id, // varyant id
       product_name: item.name,
       quantity: item.quantity,
       price: item.price
