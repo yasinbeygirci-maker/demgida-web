@@ -37,11 +37,12 @@ export async function POST(req: Request) {
           { status: 400 }
         );
       }
-    }// 0. ADIM: Stok Kontrolü (product_variants tablosundaki stock_qua sütunundan)
+    }
+    // 0. ADIM: Stok Kontrolü (product_variants tablosundaki stock_quantity sütunundan)
     for (const item of cart) {
       const { data: variant, error: stockError } = await supabase
         .from('product_variants')
-        .select('id, stock_qua')
+        .select('id, stock_quantity')
         .eq('id', item.id)
         .single();
 
@@ -52,9 +53,9 @@ export async function POST(req: Request) {
         );
       }
 
-      if (variant.stock_qua !== undefined && variant.stock_qua < item.quantity) {
+      if (variant.stock_quantity !== undefined && variant.stock_quantity < item.quantity) {
         return NextResponse.json(
-          { error: `Üzgünüz, "${item.name}" için yeterli stok kalmadı. (Kalan Stok: ${variant.stock_qua})` },
+          { error: `Üzgünüz, "${item.name}" için yeterli stok kalmadı. (Kalan Stok: ${variant.stock_quantity})` },
           { status: 400 }
         );
       }
