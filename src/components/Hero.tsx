@@ -123,17 +123,13 @@ export default function Hero() {
                   className="w-full h-full object-cover opacity-95"
                 />
 
-                {/* Üst Canlı Hasat / Kavrum Rozeti */}
+                {/* Sadece Sağ Üstteki İkon Kaldı, Metin Rozeti Temizlendi */}
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 }}
-                  className="absolute top-6 left-6 right-6 flex items-center justify-between"
+                  className="absolute top-6 right-6 flex items-center justify-end"
                 >
-                  <div className="px-4 py-2 rounded-full bg-brand-navy/80 backdrop-blur-md border border-white/10 text-white text-[11px] font-bold tracking-premium-wide flex items-center gap-2 shadow-xl">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    <span>2026 Taze Hasat Seçkisi</span>
-                  </div>
                   <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/20 shadow-xl">
                     <Sparkles size={16} className="text-brand-accent" />
                   </div>
